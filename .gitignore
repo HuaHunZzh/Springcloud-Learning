@@ -13,3 +13,4 @@ target/
 #documents
 document/
 
+.gitignore
