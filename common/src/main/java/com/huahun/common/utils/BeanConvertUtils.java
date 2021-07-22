@@ -1,4 +1,4 @@
-package com.huahun.payment.common.utils;
+package com.huahun.common.utils;
 
 import org.springframework.beans.BeanUtils;
 

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: order
+  profiles:
+    active: dev #默认为开发环境
+
+mybatis:
+  mapper-locations: classpath*:com/**/mapper/xml/*.xml
+  type-aliases-package: com.huahun.order.entity.po   #让mybatis自动扫描到自定义实体类

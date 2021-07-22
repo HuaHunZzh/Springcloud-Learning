@@ -1,6 +1,6 @@
 package com.huahun.payment.service.impl;
 
-import com.huahun.payment.common.utils.BeanConvertUtils;
+import com.huahun.common.utils.BeanConvertUtils;
 import com.huahun.payment.entity.dto.PaymentDTO;
 import com.huahun.payment.entity.po.PaymentPO;
 import com.huahun.payment.mapper.PaymentMapper;

@@ -1,7 +1,7 @@
 package com.huahun.payment.controller;
 
-import com.huahun.payment.common.api.CommonResult;
-import com.huahun.payment.common.utils.BeanConvertUtils;
+import com.huahun.common.api.CommonResult;
+import com.huahun.common.utils.BeanConvertUtils;
 import com.huahun.payment.entity.dto.PaymentDTO;
 import com.huahun.payment.entity.vo.PaymentVO;
 import com.huahun.payment.service.PaymentService;
@@ -28,10 +28,9 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping(value="/insert")
-    public CommonResult create(PaymentVO paymentVO)
+    public CommonResult create(@RequestBody  PaymentVO paymentVO)
     {
         int result = paymentService.insert(BeanConvertUtils.convertTo(paymentVO, PaymentDTO::new));
-        log.info("****插入结果：" + result);
         if(result > 0)
         {
             return new CommonResult(200, "插入数据成功", result);
@@ -45,7 +44,6 @@ public class PaymentController {
             @Valid @RequestParam @NotNull(message = "id不能为空") @Pattern(regexp = "^[0-9]*$", message = "id只能是整数") Long id)
     {
         PaymentDTO paymentDTO = paymentService.getPaymentById(id);
-        log.info("****查询结果：" + paymentDTO);
         if(paymentDTO != null)
         {
             return new CommonResult(200, "查询成功", BeanConvertUtils.convertTo(paymentDTO, PaymentVO::new));

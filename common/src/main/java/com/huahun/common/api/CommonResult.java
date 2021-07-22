@@ -1,4 +1,4 @@
-package com.huahun.payment.common.api;
+package com.huahun.common.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

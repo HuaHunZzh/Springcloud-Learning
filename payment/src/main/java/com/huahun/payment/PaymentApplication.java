@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version 1.0
  */
 @SpringBootApplication
-public class PayApplication {
+public class PaymentApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PayApplication.class, args);
+        SpringApplication.run(PaymentApplication.class, args);
     }
 }
