@@ -8,10 +8,12 @@
     <artifactId>Springcloud-Learning</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>payment</module>
-        <module>order</module>
+        <module>payment-8001</module>
+        <module>order-80</module>
         <module>common</module>
-        <module>eureka-server</module>
+        <module>eureka-server-7001</module>
+        <module>eureka-server-7002</module>
+        <module>payment-8002</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -20,7 +22,8 @@
         <project.build.sourceEncouding>UTF-8</project.build.sourceEncouding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-boot.version>2.5.2</spring-boot.version>
+<!--        <spring-boot.version>2.5.2</spring-boot.version>-->
+        <spring-boot.version>2.2.9.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <junit.version>4.13.2</junit.version>
@@ -99,7 +102,6 @@
     </dependencyManagement>
 
     <build>
-        <finalName>Springcloud-Learning</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

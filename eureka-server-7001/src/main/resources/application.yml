@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: eureka-server-7001
+  profiles:
+    active: dev #默认为开发环境
+
