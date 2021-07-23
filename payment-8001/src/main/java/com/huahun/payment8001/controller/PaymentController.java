@@ -5,7 +5,8 @@ import com.huahun.common.utils.BeanConvertUtils;
 import com.huahun.payment8001.entity.dto.PaymentDTO;
 import com.huahun.payment8001.entity.vo.PaymentVO;
 import com.huahun.payment8001.service.PaymentService;
-
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 /**
  * @ClassName PaymentController
@@ -28,8 +30,15 @@ import javax.validation.constraints.Pattern;
 public class PaymentController {
     @Resource
     private PaymentService paymentService;
+
     @Value("${server.port}")
     private String serverPort;
+
+    /**
+     * 服务发现：允许其他用户发现服务注册阶段存储的信息
+     */
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @PostMapping(value="/insert")
     public CommonResult create(@RequestBody  PaymentVO paymentVO)
@@ -56,4 +65,17 @@ public class PaymentController {
         }
     }
 
+    @GetMapping(value="/discovery")
+    public CommonResult discovery(){
+        List<String> services = discoveryClient.getServices();
+        for(String service : services){
+            log.info("service found: " + service);
+        }
+        List<ServiceInstance> serviceInstances = discoveryClient.getInstances("payment");
+        for(ServiceInstance serviceInstance : serviceInstances){
+            log.info(serviceInstance.getServiceId() + "\t" + serviceInstance.getHost()
+                    + "\t" + serviceInstance.getPort() + "\t" + serviceInstance.getUri());
+        }
+        return new CommonResult(200, "服务发现成功", this.discoveryClient);
+    }
 }
